@@ -2,6 +2,8 @@
 Created on May 14, 2009
 
 @author: darkxanthos
+https://www.autoitscript.com/forum/topic/150415-generate-music-algorithmically/
+
 '''
 import random
 
@@ -27,7 +29,7 @@ class MarkovBuilder:
         value_counts = self._matrix[value]
         value_index = self.randomly_choose(value_counts)
         if(value_index < 0):
-            raise RuntimeError, "Non-existent value selected."
+            raise RuntimeError("Non-existent value selected.")
         else:
             return self._reverse_value_lookup[value_index]
             
@@ -35,9 +37,13 @@ class MarkovBuilder:
         """Given an array of counts, returns the index that was randomly chosen"""
         counted_sum = 0
         count_sum = sum(choice_counts)
-        selected_count = random.randrange(1, count_sum + 1)
-        for index in range(0, len(choice_counts)):
-            counted_sum += choice_counts[index]
-            if(counted_sum >= selected_count):
-                return index
-        raise RuntimeError, "Impossible value selection made. BAD!"
+
+        if count_sum == 0:
+            return random.randint(0, len(choice_counts)-1)
+        else:
+            selected_count = random.randrange(1, count_sum + 1)
+            for index in range(0, len(choice_counts)):
+                counted_sum += choice_counts[index]
+                if(counted_sum >= selected_count):
+                    return index
+        raise RuntimeError("Impossible value selection made. BAD!")
