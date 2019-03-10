@@ -1,7 +1,7 @@
 # Markov Music
 
 A markov chain based VERY simplistic procedural music generator.  
-**Click link to watch [demo video]()!**  
+**Click link to watch [demo video](https://youtu.be/qjFFPDLDLEo)!**  
 
 ## Improvements
 
